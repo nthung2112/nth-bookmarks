@@ -72,7 +72,7 @@ export default function Bookmarks({ data }: { data: ConfigItem[] }) {
                 className="w-8 h-8 mr-4 rounded-full flex-shrink-0 card-icon-bg"
                 src={link.icon || 'default-icon.svg'}
                 alt={link.title}
-                onError={(event) => {
+                onError={(event: any) => {
                   event.target.src = 'default-icon.svg';
                 }}
               />

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function ThemeButton() {
-  const [dark, setDark] = useState(false);
+  const [_, setDark] = useState(false);
 
   useEffect(() => {
     function applyColorTheme(theme: string) {
