@@ -1,5 +1,6 @@
 import SearchBar from './search-bar';
 import ThemeButton from './theme-button';
+import LogoSvg from '../assets/logo.svg';
 
 export default function Header() {
   return (
@@ -27,7 +28,7 @@ export default function Header() {
               />
             </svg>
           </button>
-          <img className="pl-2 h-8 w-auto lg:hidden" src="/logo.svg" alt="NTH Bookmarks" />
+          <img className="pl-2 h-8 w-auto lg:hidden" src={LogoSvg} alt="NTH Bookmarks" />
           <SearchBar />
         </div>
         <a href="#" className="lg:hidden ml-2 font-extrabold text-2xl dark:text-white">

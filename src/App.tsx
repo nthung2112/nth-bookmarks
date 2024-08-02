@@ -42,22 +42,27 @@ async function appLoader({ request }: LoaderFunctionArgs) {
   return null;
 }
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      loader: appLoader,
+      children: [
+        {
+          element: <MainPage />,
+          path: '/',
+        },
+        {
+          element: <NotFound />,
+          path: '*',
+        },
+      ],
+    },
+  ],
   {
-    element: <Layout />,
-    loader: appLoader,
-    children: [
-      {
-        element: <MainPage />,
-        path: '/',
-      },
-      {
-        element: <NotFound />,
-        path: '*',
-      },
-    ],
-  },
-]);
+    basename: '/nth-bookmarks/',
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;

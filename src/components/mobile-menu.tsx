@@ -1,3 +1,5 @@
+import LogoSvg from '../assets/logo.svg';
+
 export default function MobileMenu() {
   return (
     <div
@@ -33,7 +35,7 @@ export default function MobileMenu() {
 
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:pintree-bg-gray-900 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
-              <img className="pl-2 h-8 w-auto" src="/logo.svg" alt="NTH Bookmarks" />
+              <img className="pl-2 h-8 w-auto" src={LogoSvg} alt="NTH Bookmarks" />
               <a href="" className="ml-4 font-extrabold text-2xl dark:text-white">
                 NTH Bookmarks
               </a>
