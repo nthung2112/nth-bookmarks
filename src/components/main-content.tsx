@@ -15,8 +15,8 @@ export default function MainContent() {
         {isLoading ? (
           <div className="grid gap-6 p-6 animate-pulse">
             <div className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12 gap-6 ">
-              {[...Array(6)].map((e, i) => (
-                <div className="rounded-lg cursor-pointer flex flex-col items-center ">
+              {[...Array(6)].map((_e, i) => (
+                <div key={i} className="rounded-lg cursor-pointer flex flex-col items-center">
                   <div className="mb-2">
                     <div className="w-24 h-20 bg-gray-300 rounded-lg dark:bg-gray-600" />
                     <div className="h-2 mt-2 bg-gray-200 rounded-lg dark:bg-gray-700" />
@@ -26,8 +26,11 @@ export default function MainContent() {
             </div>
             <hr className="my-1 border-t-1 border-gray-200 dark:pintree-border-gray-800" />
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6  animate-pulse">
-              {[...Array(6)].map((e, i) => (
-                <div className="flex max-w-sm shadow-sm ring-1 ring-gray-900/5 dark:pintree-ring-gray-800 p-2 rounded-md">
+              {[...Array(6)].map((_e, i) => (
+                <div
+                  key={i}
+                  className="flex max-w-sm shadow-sm ring-1 ring-gray-900/5 dark:pintree-ring-gray-800 p-2 rounded-md"
+                >
                   <div className="flex-shrink-0">
                     <span className="flex justify-center items-center bg-gray-300 dark:bg-gray-600 rounded-full w-12 h-12" />
                   </div>
