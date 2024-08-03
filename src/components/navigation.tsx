@@ -1,7 +1,7 @@
 import { useAppStore } from '@/store/app-store';
 import { ConfigItem } from '@/types';
 import clsx from 'clsx';
-import { Fragment, useState } from 'react';
+import { Fragment, MouseEvent, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 type NavigationProps = {
@@ -11,21 +11,24 @@ type NavigationProps = {
   className?: string;
 };
 
-export default function Navigation({
-  data,
-  isFirstRender,
-  className,
-  pathMapping,
-}: NavigationProps) {
+export default function Navigation() {
+  const { data, pathMapping } = useAppStore();
+  return <NavigationItem isFirstRender data={data} pathMapping={pathMapping} />;
+}
+
+export function NavigationItem({ data, isFirstRender, className, pathMapping }: NavigationProps) {
   const { activeFolder, setActiveFolder } = useAppStore();
   let [, setSearchParams] = useSearchParams();
   const [expandedKeys, setExpandedKeys] = useState<string[]>(
     isFirstRender && data.length > 0 ? [data[0].id] : []
   );
 
-  const handleClick = (folder: ConfigItem) => () => {
-    setActiveFolder(folder);
-    setSearchParams({ p: pathMapping[folder.id] });
+  const handleClick = (folder: ConfigItem) => (event: MouseEvent<HTMLElement>) => {
+    if (!(event.target as HTMLElement).closest('svg')) {
+      setActiveFolder(folder);
+      setSearchParams({ p: pathMapping[folder.id] });
+    }
+
     if (folder.children?.every((item) => item.type === 'link')) {
       return;
     }
@@ -82,7 +85,7 @@ export default function Navigation({
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
+                    className="size-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -98,7 +101,7 @@ export default function Navigation({
               )}
             </li>
             {folder.children && folder.children.length > 0 && (
-              <Navigation
+              <NavigationItem
                 data={folder.children}
                 className={clsx('ml-4 space-y-2', !expandedKeys.includes(folder.id) && 'hidden')}
                 pathMapping={pathMapping}

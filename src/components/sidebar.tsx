@@ -3,7 +3,8 @@ import Navigation from './navigation';
 import { useAppStore } from '@/store/app-store';
 
 export default function Sidebar() {
-  const { data, pathMapping, isLoading } = useAppStore();
+  const isLoading = useAppStore((state) => state.isLoading);
+
   return (
     <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-60 lg:flex-col">
       <div className="flex flex-col border-r border-gray-200 dark:pintree-border-gray-800 bg-white px-4 h-full font-semibold dark:pintree-bg-gray-900">
@@ -26,7 +27,7 @@ export default function Sidebar() {
                 <span className="sr-only">Loading...</span>
               </div>
             ) : (
-              <Navigation isFirstRender data={data} pathMapping={pathMapping} />
+              <Navigation />
             )}
           </div>
         </div>
